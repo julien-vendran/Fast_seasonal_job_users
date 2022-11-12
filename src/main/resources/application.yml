@@ -3,5 +3,16 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
     password: docker
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            client-id: login-app
+            authorization-grant-type: authorization_code
+            scope: openid
+
 kafka:
   bootstrapAddress: http://localhost:9092
+
+  docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:20.0.1 start-dev --hostname-port=8443
