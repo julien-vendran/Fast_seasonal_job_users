@@ -13,15 +13,14 @@ import java.util.Objects;
 @Setter
 @ToString
 public class RecruiterEntity {
-    //TODO: change first_name to firstname and last_name to lastname
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
     @Column
-    private String last_name;
+    private String lastname;
     @Column
-    private String first_name;
+    private String firstname;
     @Column
     private String companyName;
     @Column
@@ -40,8 +39,8 @@ public class RecruiterEntity {
         if (!(o instanceof RecruiterEntity recruiter))
             return false;
         return Objects.equals(this.id, recruiter.id)
-                && Objects.equals(this.first_name, recruiter.first_name)
-                && Objects.equals(this.last_name, recruiter.last_name)
+                && Objects.equals(this.firstname, recruiter.firstname)
+                && Objects.equals(this.lastname, recruiter.lastname)
                 && Objects.equals(this.companyName, recruiter.companyName)
                 && Objects.equals(this.city, recruiter.city)
                 && Objects.equals(this.job, recruiter.job)
