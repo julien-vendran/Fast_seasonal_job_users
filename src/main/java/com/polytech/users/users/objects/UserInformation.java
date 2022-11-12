@@ -8,8 +8,8 @@ import lombok.experimental.Accessors;
 @Getter
 @Accessors(fluent = true)
 public abstract class UserInformation {
-    private final String name;
-    private final String lastName;
+    private final String firstname;
+    private final String lastname;
     private final String location;
     private final String job;
     private final long phone;
