@@ -18,10 +18,10 @@ public class JobSeekerEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name="last_name", length=100, nullable=false)
+    @Column(name="lastname", length=100, nullable=false)
     private String lastName;
 
-    @Column(name="first_name", length=100, nullable=false)
+    @Column(name="firstname", length=100, nullable=false)
     private String firstName;
 
     @Column(name="city", length=100, nullable=false)
