@@ -11,7 +11,8 @@ import javax.persistence.*;
 @Setter
 @RequiredArgsConstructor
 @AllArgsConstructor
-@Entity(name = "jobseeker")
+@Entity
+@Table(name = "jobseeker")
 public class JobSeekerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,7 +32,7 @@ public class JobSeekerEntity {
     private String job;
 
     @Column(name="phone", length=20, nullable=false)
-    private String phoneNumber;
+    private String phone;
 
     @Column(name="email", length=100, nullable=false)
     private String email;

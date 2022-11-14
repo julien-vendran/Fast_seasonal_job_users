@@ -8,29 +8,28 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/jobseeker")
+@RequestMapping("/api/jobseeker")
 @RequiredArgsConstructor
 public class JobSeekerController {
     private final JobSeekerRepository jobSeekerRepository;
 
     @PostMapping()
-    JobSeekerEntity create(JobSeekerEntity jobSeekerEntity) {
+    JobSeekerEntity save(JobSeekerEntity jobSeekerEntity) {
         return jobSeekerRepository.save(jobSeekerEntity);
     }
 
     @GetMapping()
-    Iterable<JobSeekerEntity> getAll() {
+    Iterable<JobSeekerEntity> findAll() {
         return jobSeekerRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    Optional<JobSeekerEntity> getById(@PathVariable String id) {
-        return jobSeekerRepository.findById(Long.getLong(id));
+    Optional<JobSeekerEntity> findById(@PathVariable long id) {
+        return jobSeekerRepository.findById(id);
     }
 
     @DeleteMapping("/{id}")
-    void delete(@PathVariable String id) {
-        Long idL = Long.getLong(id);
-        jobSeekerRepository.deleteById(idL);
+    void deleteById(@PathVariable long id) {
+        jobSeekerRepository.deleteById(id);
     }
 }
