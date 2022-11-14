@@ -6,6 +6,10 @@ spring:
   security:
     oauth2:
       client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8180/auth/realms/SpringBootKeycloak
+            user-name-attribute: julien
         registration:
           keycloak:
             client-id: login-app
@@ -15,4 +19,4 @@ spring:
 kafka:
   bootstrapAddress: http://localhost:9092
 
-  docker run -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:20.0.1 start-dev --hostname-port=8443
+server.port: 8081
