@@ -29,7 +29,7 @@ public class RecruiterController {
     }
 
     @PostMapping("/save")
-    public RecruiterEntity save(@RequestBody RecruiterEntity recruiterEntity){
+    public RecruiterEntity create(@RequestBody RecruiterEntity recruiterEntity){
         return recruiterRepository.save(recruiterEntity);
     }
 
@@ -38,8 +38,4 @@ public class RecruiterController {
         recruiterRepository.deleteById(id);
     }
 
-    @DeleteMapping("/deleteAll")
-    public void deleteAll(){
-        recruiterRepository.deleteAll();
-    }
 }
