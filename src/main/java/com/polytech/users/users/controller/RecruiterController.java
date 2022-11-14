@@ -3,6 +3,7 @@ package com.polytech.users.users.controller;
 import com.polytech.users.users.entity.RecruiterEntity;
 import com.polytech.users.users.repository.RecruiterRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RecruiterController {
 
+    @Autowired
     private final RecruiterRepository recruiterRepository;
 
     @GetMapping()
@@ -28,8 +30,8 @@ public class RecruiterController {
         return recruiterRepository.findByCompanyName(companyName);
     }
 
-    @PostMapping("/save")
-    public RecruiterEntity create(@RequestBody RecruiterEntity recruiterEntity){
+    @PostMapping()
+    public RecruiterEntity save(@RequestBody RecruiterEntity recruiterEntity){
         return recruiterRepository.save(recruiterEntity);
     }
 
