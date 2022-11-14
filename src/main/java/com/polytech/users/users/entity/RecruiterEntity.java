@@ -4,31 +4,39 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "recruiter")
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor
+@Entity(name = "recruiter")
+@Table(name = "RECRUITER")
 public class RecruiterEntity {
 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @Column(name = "id", nullable = false)
     private Long id;
-    @Column
+
+    @Column(name="lastname", length=100, nullable=false)
     private String lastname;
-    @Column
+
+    @Column(name="firstname", length=100, nullable=false)
     private String firstname;
-    @Column
+
+    @Column(name="companyName", length=100, nullable=false)
     private String companyName;
-    @Column
+
+    @Column(name="city", length=100, nullable=false)
     private String city;
-    @Column
+
+    @Column(name="job", length=100, nullable=false)
     private String job;
-    @Column
+
+    @Column(name="phone", length=20, nullable=false)
     private String phone;
-    @Column
+
+    @Column(name="email", length=100, nullable=false)
     private String email;
 
 }
