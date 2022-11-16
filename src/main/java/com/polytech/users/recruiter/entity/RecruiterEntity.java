@@ -1,4 +1,4 @@
-package com.polytech.users.users.entity;
+package com.polytech.users.recruiter.entity;
 
 import lombok.*;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @EqualsAndHashCode
 @RequiredArgsConstructor
 @Entity(name = "recruiter")
-@Table(name = "RECRUITER")
+@Table(name = "recruiter")
 public class RecruiterEntity {
 
     @GeneratedValue(strategy = GenerationType.AUTO)

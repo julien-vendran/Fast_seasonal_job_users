@@ -48,10 +48,8 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-            .antMatchers("/jobseeker*")
-            //.hasRole("USER")
-            //.anyRequest()
-            .permitAll();
+                .antMatchers("/jobseeker*").permitAll();
+                //.antMatchers("/recruiter*").permitAll();
         return http.build();
     }
 
