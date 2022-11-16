@@ -1,14 +1,14 @@
-package com.polytech.users.users.controller;
+package com.polytech.users.recruiter.controller;
 
-import com.polytech.users.users.entity.RecruiterEntity;
-import com.polytech.users.users.repository.RecruiterRepository;
+import com.polytech.users.recruiter.entity.RecruiterEntity;
+import com.polytech.users.recruiter.repository.RecruiterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/recruiter")
+@RequestMapping("/api/recruiter")
 @RequiredArgsConstructor
 public class RecruiterController {
 
@@ -39,5 +39,4 @@ public class RecruiterController {
     public void deleteById(@PathVariable Long id){
         recruiterRepository.deleteById(id);
     }
-
 }
