@@ -7,13 +7,13 @@ spring:
     password: docker
 
 keycloak:
-  realm: SpringBootKeycloak
-  auth-server-url: http://localhost:8080/auth
+  realm: users-microservice
+  auth-server-url: http://localhost:8080
   ssl-required: external
-  resource: users-microservice
+  resource: client-users-microservice
   credentials:
-    secret: 82Fsy7KCd3ay1FWRpm7AzNe45ycj3DRE
-  use-resource-role-mappings: true
+    secret: bfgOuZgj7DM7hAHC9Q6UQYDjOcJGFRTR
+  use-resource-role-mappings: false
   bearer-only: true
 
 kafka:
