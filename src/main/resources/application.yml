@@ -13,7 +13,7 @@ keycloak:
   resource: client-users-microservice
   credentials:
     secret: bfgOuZgj7DM7hAHC9Q6UQYDjOcJGFRTR
-  use-resource-role-mappings: true
+  use-resource-role-mappings: false
   bearer-only: true
 
 kafka:
