@@ -21,8 +21,8 @@ import org.springframework.security.web.session.HttpSessionEventPublisher;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(
-        prePostEnabled = true,
-        securedEnabled = true,
+        prePostEnabled = true, //allows us to use the @PreAuthorize("hasRole('<role>')") and @PostAuthorize("hasRole('<role>')") annotation
+        securedEnabled = true, //allows us to use the @Secured("<role>") annotation
         jsr250Enabled = true) //allows us to use the @RoleAllowed annotation
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
@@ -58,12 +58,6 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     @Override
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
         return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
-    }
-
-
-    @Bean
-    public ServletListenerRegistrationBean<HttpSessionEventPublisher> httpSessionEventPublisher() {
-        return new ServletListenerRegistrationBean<HttpSessionEventPublisher>(new HttpSessionEventPublisher());
     }
 
 }
