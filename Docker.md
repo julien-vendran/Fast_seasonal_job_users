@@ -30,8 +30,8 @@ Pour accéder au terminal du container depuis un terminal
 docker exec -it <container-name> bash
 ```
 
-# Keycloack 
-Lancer une instance de KeyCloack
+# Keycloak 
+Lancer une instance de KeyCloak
 ```shell
-docker run --name keycloack -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:20.0.1 start-dev
+docker run --name keycloak -p 8080:8080 -e KEYCLOAK_ADMIN=admin -e KEYCLOAK_ADMIN_PASSWORD=admin quay.io/keycloak/keycloak:20.0.1 start-dev
 ```
