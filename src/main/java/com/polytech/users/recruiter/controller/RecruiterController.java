@@ -46,9 +46,9 @@ public class RecruiterController {
         recruiterRepository.deleteById(id);
     }
 
-    @PreAuthorize("hasRole('user-admin')")
-    @Secured("user-admin")
-    @RolesAllowed("user-admin")
+    //@PreAuthorize("hasRole('admin')")
+    //@Secured("admin")
+    @RolesAllowed("app-admin")
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public ResponseEntity<String> getAdmin() {
         return ResponseEntity.ok("Hello Admin");
