@@ -1,10 +1,10 @@
-package com.polytech.users.keaycloak.service;
+package com.polytech.users.keycloak.service;
 
-import com.polytech.users.keaycloak.KeycloakService;
-import com.polytech.users.keaycloak.config.KeycloakProperties;
-import com.polytech.users.keaycloak.config.KeycloakUserManagementInformation;
-import com.polytech.users.keaycloak.dto.TokenDto;
-import com.polytech.users.keaycloak.dto.user_creation.UserCreationDto;
+import com.polytech.users.keycloak.KeycloakService;
+import com.polytech.users.keycloak.config.KeycloakProperties;
+import com.polytech.users.keycloak.config.KeycloakUserManagementInformation;
+import com.polytech.users.keycloak.dto.TokenDto;
+import com.polytech.users.keycloak.dto.user_creation.UserCreationDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

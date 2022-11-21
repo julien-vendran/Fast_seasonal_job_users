@@ -1,4 +1,4 @@
-package com.polytech.users.keaycloak.dto.user_creation;
+package com.polytech.users.keycloak.dto.user_creation;
 
 import java.util.Collections;
 import java.util.List;

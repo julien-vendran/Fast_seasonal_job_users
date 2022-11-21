@@ -3,7 +3,7 @@ package com.polytech.users.jobseeker.service;
 import com.polytech.users.jobseeker.dto.JobSeekerCreationDto;
 import com.polytech.users.jobseeker.entity.JobSeekerEntity;
 import com.polytech.users.jobseeker.repository.JobSeekerRepository;
-import com.polytech.users.keaycloak.KeycloakService;
+import com.polytech.users.keycloak.KeycloakService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

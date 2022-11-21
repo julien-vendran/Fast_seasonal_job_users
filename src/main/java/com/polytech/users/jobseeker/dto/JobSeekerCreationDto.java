@@ -1,7 +1,7 @@
 package com.polytech.users.jobseeker.dto;
 
 import com.polytech.users.jobseeker.entity.JobSeekerEntity;
-import com.polytech.users.keaycloak.dto.user_creation.UserCreationDto;
+import com.polytech.users.keycloak.dto.user_creation.UserCreationDto;
 
 public record JobSeekerCreationDto(JobSeekerEntity jobSeeker, String password) {
 

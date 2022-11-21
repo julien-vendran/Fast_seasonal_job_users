@@ -1,7 +1,7 @@
-package com.polytech.users.keaycloak.service;
+package com.polytech.users.keycloak.service;
 
-import com.polytech.users.keaycloak.config.KeycloakProperties;
-import com.polytech.users.keaycloak.dto.TokenDto;
+import com.polytech.users.keycloak.config.KeycloakProperties;
+import com.polytech.users.keycloak.dto.TokenDto;
 import com.sun.jdi.InternalException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.*;

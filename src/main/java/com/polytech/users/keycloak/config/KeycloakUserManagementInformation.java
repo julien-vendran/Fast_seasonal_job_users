@@ -1,7 +1,7 @@
-package com.polytech.users.keaycloak.config;
+package com.polytech.users.keycloak.config;
 
-import com.polytech.users.keaycloak.dto.TokenDto;
-import com.polytech.users.keaycloak.service.KeycloakClient;
+import com.polytech.users.keycloak.dto.TokenDto;
+import com.polytech.users.keycloak.service.KeycloakClient;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,7 +11,7 @@ public class KeycloakUserManagementInformation {
     private static final String GRANT_TYPE = "password";
 
     public KeycloakUserManagementInformation(KeycloakProperties keycloakProperties, KeycloakClient keycloakClient) {
-        TokenDto tokens = keycloakClient.getToken(GRANT_TYPE, "admin-rest-client", null, keycloakProperties.getAdminUsername(), keycloakProperties.getAdminPassword());
+        TokenDto tokens = keycloakClient.getToken(GRANT_TYPE, keycloakProperties.getClientId(), keycloakProperties.getClientSecret(), keycloakProperties.getAdminUsername(), keycloakProperties.getAdminPassword());
         adminToken = tokens.access_token();
     }
 

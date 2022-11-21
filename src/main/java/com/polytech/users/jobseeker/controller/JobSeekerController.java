@@ -20,7 +20,6 @@ import java.util.Optional;
 public class JobSeekerController {
 
     private final JobSeekerService jobSeekerService;
-    private final KafkaSenderController kafkaSenderController;
 
     @PostMapping
     JobSeekerEntity save(@RequestBody JobSeekerCreationDto jobSeekerCreationDto) {
@@ -59,11 +58,5 @@ public class JobSeekerController {
             return ResponseEntity.badRequest().build();
         }
         return jobSeekerService.generateToken(credentials.username(), credentials.password());
-    }
-
-    @GetMapping("/kafka")
-    ResponseEntity<String> testKafka() {
-        kafkaSenderController.sendMessage("Je suis une chaussure", "topicName");
-        return ResponseEntity.ok("Cooml");
     }
 }

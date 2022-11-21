@@ -1,4 +1,4 @@
-package com.polytech.users.keaycloak.dto;
+package com.polytech.users.keycloak.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

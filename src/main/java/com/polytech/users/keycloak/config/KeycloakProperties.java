@@ -1,4 +1,4 @@
-package com.polytech.users.keaycloak.config;
+package com.polytech.users.keycloak.config;
 
 import lombok.Getter;
 import lombok.Setter;
