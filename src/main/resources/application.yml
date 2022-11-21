@@ -18,3 +18,9 @@ keycloak:
 
 kafka:
   bootstrapAddress: http://localhost:9092
+
+user-microservice:
+  keycloak:
+    user-management:
+      username: user_admin
+      password: Pa55word

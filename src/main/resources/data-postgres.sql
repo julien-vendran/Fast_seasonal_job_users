@@ -24,3 +24,5 @@ CREATE TABLE recruiter
     phone     VARCHAR(20),
     email     VARCHAR(100)
 );
+
+CREATE SEQUENCE hibernate_sequence START 1;
