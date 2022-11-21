@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.Optional;
 
 public interface JobSeekerService {
-    JobSeekerEntity save(JobSeekerEntity jobSeekerEntity);
+    JobSeekerEntity save(JobSeekerCreationDto jobSeekerCreationDto);
 
     Iterable<JobSeekerEntity> findAll();
 
@@ -16,6 +16,4 @@ public interface JobSeekerService {
     void deleteById(long id);
 
     ResponseEntity<String> generateToken(String username, String password);
-
-    JobSeekerEntity create(JobSeekerCreationDto dto);
 }

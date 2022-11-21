@@ -23,8 +23,8 @@ public class JobSeekerController {
     private final KafkaSenderController kafkaSenderController;
 
     @PostMapping
-    JobSeekerEntity save(@RequestBody JobSeekerEntity jobSeekerEntity) {
-        return jobSeekerService.save(jobSeekerEntity);
+    JobSeekerEntity save(@RequestBody JobSeekerCreationDto jobSeekerCreationDto) {
+        return jobSeekerService.save(jobSeekerCreationDto);
     }
 
     @GetMapping()

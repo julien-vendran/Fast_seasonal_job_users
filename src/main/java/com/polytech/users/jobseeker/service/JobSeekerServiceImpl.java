@@ -20,8 +20,9 @@ public class JobSeekerServiceImpl implements JobSeekerService {
     private final JobSeekerRepository jobSeekerRepository;
 
     @Override
-    public JobSeekerEntity save(JobSeekerEntity jobSeekerEntity) {
-        return jobSeekerRepository.save(jobSeekerEntity);
+    public JobSeekerEntity save(JobSeekerCreationDto jobSeekerCreationDto) {
+        keycloakService.createUser(jobSeekerCreationDto.toUserCreationDto());
+        return jobSeekerRepository.save(jobSeekerCreationDto.jobSeeker());
     }
 
     @Override
@@ -48,10 +49,5 @@ public class JobSeekerServiceImpl implements JobSeekerService {
             log.error("Error occured while generating a token", e);
             return ResponseEntity.internalServerError().build();
         }
-    }
-
-    @Override
-    public JobSeekerEntity create(JobSeekerCreationDto dto) {
-        return null;
     }
 }
