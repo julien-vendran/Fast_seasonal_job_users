@@ -8,4 +8,8 @@ public record JobSeekerCreationDto(JobSeekerEntity jobSeeker, String password) {
     public UserCreationDto toUserCreationDto() {
         return UserCreationDto.of(jobSeeker().getEmail(), true, password);
     }
+
+    public String username() {
+        return jobSeeker.getEmail();
+    }
 }

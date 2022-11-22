@@ -4,6 +4,7 @@ import com.polytech.users.keycloak.KeycloakService;
 import com.polytech.users.keycloak.config.KeycloakProperties;
 import com.polytech.users.keycloak.config.KeycloakUserManagementInformation;
 import com.polytech.users.keycloak.dto.TokenDto;
+import com.polytech.users.keycloak.dto.UserInformationDto;
 import com.polytech.users.keycloak.dto.user_creation.UserCreationDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -48,5 +49,18 @@ public class KeycloakServiceImpl implements KeycloakService {
             .build();
 
         restTemplate.exchange(builder.toUriString(), HttpMethod.POST, httpEntity, String.class);
+    }
+
+    @Override
+    public UserInformationDto findUser(String username) {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setBearerAuth(userManagementInformation.getAdminToken());
+
+        UriComponents builder = UriComponentsBuilder.fromHttpUrl(keycloakProperties.getBaseUrl())
+            .pathSegment("admin", "realms", keycloakProperties.getRealm(), "users")
+            .queryParam("username", username)
+            .build();
+
+        return restTemplate.getForObject(builder.toUriString(), UserInformationDto.class, headers);
     }
 }

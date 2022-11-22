@@ -6,10 +6,13 @@ import com.polytech.users.jobseeker.entity.JobSeekerEntity;
 import com.polytech.users.jobseeker.service.JobSeekerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.keycloak.KeycloakSecurityContext;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -21,12 +24,20 @@ public class JobSeekerController {
 
     private final JobSeekerService jobSeekerService;
 
+    @GetMapping("/test")
+    void test(HttpServletRequest request) {
+        log.info(request.toString());
+
+        KeycloakSecurityContext contextKC = (KeycloakSecurityContext) request.getAttribute(KeycloakSecurityContext.class.getName());
+        log.info(contextKC.getToken().getId());
+    }
+
     @PostMapping
     JobSeekerEntity save(@RequestBody JobSeekerCreationDto jobSeekerCreationDto) {
         return jobSeekerService.save(jobSeekerCreationDto);
     }
 
-    @GetMapping()
+    @GetMapping
     Iterable<JobSeekerEntity> findAll() {
         return jobSeekerService.findAll();
     }

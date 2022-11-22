@@ -4,6 +4,8 @@ import com.polytech.users.jobseeker.dto.JobSeekerCreationDto;
 import com.polytech.users.jobseeker.entity.JobSeekerEntity;
 import com.polytech.users.jobseeker.repository.JobSeekerRepository;
 import com.polytech.users.keycloak.KeycloakService;
+import com.polytech.users.keycloak.dto.TokenDto;
+import com.polytech.users.keycloak.dto.UserInformationDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,14 @@ public class JobSeekerServiceImpl implements JobSeekerService {
 
     @Override
     public JobSeekerEntity save(JobSeekerCreationDto jobSeekerCreationDto) {
+        log.info("Création d'un nouvel utilisateur");
         keycloakService.createUser(jobSeekerCreationDto.toUserCreationDto());
+
+        log.info("Nouvel utilisateur crée");
+        UserInformationDto result = keycloakService.findUser(jobSeekerCreationDto.username());
+
+        log.info("Cet utilisateur est l'id " + result.id());
+        jobSeekerCreationDto.jobSeeker().setId(result.id()); //MAAAAAAAAAAAAAAAAUVAISE PRATIQUE - TODO: Faire une copie de l'objet
         return jobSeekerRepository.save(jobSeekerCreationDto.jobSeeker());
     }
 

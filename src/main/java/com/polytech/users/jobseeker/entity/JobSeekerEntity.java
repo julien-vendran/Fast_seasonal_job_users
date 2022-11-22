@@ -15,15 +15,14 @@ import javax.persistence.*;
 @Table(name = "jobseeker")
 public class JobSeekerEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private Long id;
+    private String id;
 
     @Column(name="lastname", length=100, nullable=false)
-    private String lastName;
+    private String lastname;
 
     @Column(name="firstname", length=100, nullable=false)
-    private String firstName;
+    private String firstname;
 
     @Column(name="city", length=100, nullable=false)
     private String city;
