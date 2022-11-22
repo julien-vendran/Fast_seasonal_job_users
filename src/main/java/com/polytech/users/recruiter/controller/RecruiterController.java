@@ -5,8 +5,6 @@ import com.polytech.users.recruiter.repository.RecruiterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.security.RolesAllowed;
@@ -21,28 +19,28 @@ public class RecruiterController {
     private final RecruiterRepository recruiterRepository;
 
     @GetMapping()
-    public Iterable<RecruiterEntity> findAll(){
+    public Iterable<RecruiterEntity> findAll() {
         return recruiterRepository.findAll();
     }
 
 
     @GetMapping("/{id}")
-    public Optional<RecruiterEntity> findById(@PathVariable long id){
+    public Optional<RecruiterEntity> findById(@PathVariable long id) {
         return recruiterRepository.findById(id);
     }
 
     @GetMapping("/{companyName}")
-    public RecruiterEntity findByCompanyName(@PathVariable String companyName){
+    public RecruiterEntity findByCompanyName(@PathVariable String companyName) {
         return recruiterRepository.findByCompanyName(companyName);
     }
 
     @PostMapping()
-    public RecruiterEntity save(@RequestBody RecruiterEntity recruiterEntity){
+    public RecruiterEntity save(@RequestBody RecruiterEntity recruiterEntity) {
         return recruiterRepository.save(recruiterEntity);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable Long id){
+    public void deleteById(@PathVariable Long id) {
         recruiterRepository.deleteById(id);
     }
 
