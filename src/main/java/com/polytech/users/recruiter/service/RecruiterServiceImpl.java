@@ -4,7 +4,6 @@ import com.polytech.users.recruiter.entity.RecruiterEntity;
 import com.polytech.users.recruiter.repository.RecruiterRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
