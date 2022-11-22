@@ -1,13 +1,10 @@
 package com.polytech.users.recruiter.controller;
 
 import com.polytech.users.recruiter.entity.RecruiterEntity;
-import com.polytech.users.recruiter.repository.RecruiterRepository;
+import com.polytech.users.recruiter.service.RecruiterService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.security.RolesAllowed;
 import java.util.Optional;
 
 @RestController
@@ -15,44 +12,30 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class RecruiterController {
 
-    @Autowired
-    private final RecruiterRepository recruiterRepository;
+    private final RecruiterService recruiterService;
 
-    @GetMapping()
-    public Iterable<RecruiterEntity> findAll() {
-        return recruiterRepository.findAll();
+    @PostMapping()
+    RecruiterEntity save(@RequestBody RecruiterEntity recruiter) {
+        return recruiterService.save(recruiter);
     }
 
+    @GetMapping()
+    Iterable<RecruiterEntity> findAll() {
+        return recruiterService.findAll();
+    }
 
     @GetMapping("/{id}")
-    public Optional<RecruiterEntity> findById(@PathVariable long id) {
-        return recruiterRepository.findById(id);
+    Optional<RecruiterEntity> findById(@PathVariable long id) {
+        return recruiterService.findById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    void deleteById(@PathVariable Long id) {
+        recruiterService.deleteById(id);
     }
 
     @GetMapping("/{companyName}")
-    public RecruiterEntity findByCompanyName(@PathVariable String companyName) {
-        return recruiterRepository.findByCompanyName(companyName);
-    }
-
-    @PostMapping()
-    public RecruiterEntity save(@RequestBody RecruiterEntity recruiterEntity) {
-        return recruiterRepository.save(recruiterEntity);
-    }
-
-    @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable Long id) {
-        recruiterRepository.deleteById(id);
-    }
-
-
-    @RolesAllowed("app-admin")
-    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-    public ResponseEntity<String> getAdmin() {
-        return ResponseEntity.ok("Hello Admin");
-    }
-
-    @RequestMapping(value = "/anonymous", method = RequestMethod.GET)
-    public ResponseEntity<String> getAnonymous() {
-        return ResponseEntity.ok("Hello Anonymous");
+    Optional<RecruiterEntity> findByCompanyName(@PathVariable String companyName) {
+        return recruiterService.findByCompanyName(companyName);
     }
 }

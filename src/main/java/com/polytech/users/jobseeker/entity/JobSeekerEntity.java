@@ -20,10 +20,10 @@ public class JobSeekerEntity {
     private Long id;
 
     @Column(name="lastname", length=100, nullable=false)
-    private String lastName;
+    private String lastname;
 
     @Column(name="firstname", length=100, nullable=false)
-    private String firstName;
+    private String firstname;
 
     @Column(name="city", length=100, nullable=false)
     private String city;
