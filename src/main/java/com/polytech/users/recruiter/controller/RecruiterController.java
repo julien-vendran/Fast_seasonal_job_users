@@ -14,12 +14,12 @@ public class RecruiterController {
 
     private final RecruiterService recruiterService;
 
-    @PostMapping()
+    @PostMapping
     RecruiterEntity save(@RequestBody RecruiterEntity recruiter) {
         return recruiterService.save(recruiter);
     }
 
-    @GetMapping()
+    @GetMapping
     Iterable<RecruiterEntity> findAll() {
         return recruiterService.findAll();
     }
