@@ -1,10 +1,10 @@
 package com.polytech.users.config;
 
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
-import org.keycloak.adapters.springsecurity.authentication.KeycloakLogoutHandler;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
+import org.keycloak.adapters.springsecurity.management.HttpSessionManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.web.servlet.ServletListenerRegistrationBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -13,10 +13,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.authority.mapping.SimpleAuthorityMapper;
 import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
-import org.springframework.security.web.session.HttpSessionEventPublisher;
 
 @Configuration
 @EnableWebSecurity
@@ -30,7 +28,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.authorizeRequests()
-                .antMatchers("/api/recruiter/anonymous").permitAll()
+                .antMatchers("/api/recruiter/*").permitAll()
+                .antMatchers("/api/jobseeker/*").permitAll()
                 .antMatchers("/api/recruiter/admin").hasAnyRole("app-admin")
                 .anyRequest()
                 .permitAll();
@@ -39,6 +38,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
     /**
      * Registers the KeycloakAuthenticationProvider with the authentication manager
+     *
      * @param auth
      * @throws Exception
      */
@@ -52,12 +52,20 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
     /**
      * Defines the session authentication strategy.
+     *
      * @return
      */
     @Bean
     @Override
     protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
         return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
+    }
+
+    @Bean
+    @Override
+    @ConditionalOnMissingBean(HttpSessionManager.class)
+    protected HttpSessionManager httpSessionManager() {
+        return new HttpSessionManager();
     }
 
 }
