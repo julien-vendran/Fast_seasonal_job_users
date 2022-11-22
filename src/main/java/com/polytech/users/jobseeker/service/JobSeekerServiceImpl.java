@@ -1,12 +1,9 @@
 package com.polytech.users.jobseeker.service;
 
-import com.polytech.users.jobseeker.dto.JobSeekerCreationDto;
 import com.polytech.users.jobseeker.entity.JobSeekerEntity;
 import com.polytech.users.jobseeker.repository.JobSeekerRepository;
-import com.polytech.users.keycloak.KeycloakService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,13 +13,11 @@ import java.util.Optional;
 @Slf4j
 public class JobSeekerServiceImpl implements JobSeekerService {
 
-    private final KeycloakService keycloakService;
     private final JobSeekerRepository jobSeekerRepository;
 
     @Override
-    public JobSeekerEntity save(JobSeekerCreationDto jobSeekerCreationDto) {
-        keycloakService.createUser(jobSeekerCreationDto.toUserCreationDto());
-        return jobSeekerRepository.save(jobSeekerCreationDto.jobSeeker());
+    public JobSeekerEntity save(JobSeekerEntity jobSeeker) {
+        return jobSeekerRepository.save(jobSeeker);
     }
 
     @Override
@@ -38,16 +33,5 @@ public class JobSeekerServiceImpl implements JobSeekerService {
     @Override
     public void deleteById(long id) {
         jobSeekerRepository.deleteById(id);
-    }
-
-    @Override
-    public ResponseEntity<String> generateToken(String username, String password) {
-        try {
-            var tokenDto = keycloakService.getUserToken(username, password);
-            return ResponseEntity.ok(tokenDto.access_token());
-        } catch (Exception e) { //todo: Mieux gérer les différentes exceptions
-            log.error("Error occured while generating a token", e);
-            return ResponseEntity.internalServerError().build();
-        }
     }
 }

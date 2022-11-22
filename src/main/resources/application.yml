@@ -6,21 +6,5 @@ spring:
     username: postgres
     password: docker
 
-keycloak:
-  realm: users-microservice
-  auth-server-url: http://localhost:8080
-  ssl-required: external
-  resource: client-users-microservice
-  credentials:
-    secret: bfgOuZgj7DM7hAHC9Q6UQYDjOcJGFRTR
-  use-resource-role-mappings: false
-  bearer-only: true
-
 kafka:
   bootstrapAddress: http://localhost:9092
-
-user-microservice:
-  keycloak:
-    user-management:
-      username: user_admin
-      password: Pa55word
