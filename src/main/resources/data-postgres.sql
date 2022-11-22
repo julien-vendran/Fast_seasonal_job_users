@@ -25,4 +25,12 @@ CREATE TABLE recruiter
     email       VARCHAR(100)
 );
 
+DROP TABLE IF EXISTS JOBSEEKERJOINOFFER;
+CREATE TABLE JOBSEEKERJOINOFFER
+(
+    foreign key jsId references jobseeker(id),
+    foreign key offerId references offer(idOffer),
+    primary key (jsId,offerId)
+
+);
 CREATE SEQUENCE hibernate_sequence START 1;
