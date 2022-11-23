@@ -33,9 +33,19 @@ public class GradeController {
         gradeService.deleteById(id);
     }
 
-    @GetMapping("/{mark}")
+    @GetMapping("/mark/{mark}")
     Optional<GradeEntity> findByMark(@PathVariable float mark) {
         return gradeService.findByMark(mark);
+    }
+
+    @GetMapping("/recruiter/{id}")
+    Iterable<GradeEntity> findByRecruiter(@PathVariable long id){
+        return gradeService.findByRecruiter(id);
+    }
+
+    @GetMapping("/jobseeker/{id}")
+    Iterable<GradeEntity> findByJobseeker(@PathVariable long id){
+        return gradeService.findByJobseeker(id);
     }
 
 }

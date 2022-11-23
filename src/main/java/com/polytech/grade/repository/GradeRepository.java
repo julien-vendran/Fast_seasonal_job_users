@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface GradeRepository extends CrudRepository<GradeEntity, long> {
+public interface GradeRepository extends CrudRepository<GradeEntity, Long> {
     Optional<GradeEntity> findByMark(float mark);
+    Iterable<GradeEntity> findByRecruiter(long id);
+    Iterable<GradeEntity> findByJobseeker(long id);
+
 }

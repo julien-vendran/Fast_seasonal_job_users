@@ -14,4 +14,8 @@ public interface GradeService {
     void deleteById(long id);
 
     Optional<GradeEntity> findByMark(float mark);
+
+    Iterable<GradeEntity> findByRecruiter(long id);
+
+    Iterable<GradeEntity> findByJobseeker(long id);
 }
