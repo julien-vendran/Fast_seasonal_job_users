@@ -39,4 +39,16 @@ public class GradeServiceImpl implements GradeService{
     public Optional<GradeEntity> findByMark(float mark) {
         return gradeRepository.findByMark(mark);
     }
+
+    @Override
+    public Iterable<GradeEntity> findByRecruiter(long id) {
+        return gradeRepository.findByRecruiter(id);
+    }
+
+    @Override
+    public Iterable<GradeEntity> findByJobseeker(long id) {
+        return gradeRepository.findByJobseeker(id);
+    }
+
+
 }
