@@ -29,8 +29,14 @@ public class GradeServiceImpl implements GradeService {
     }
 
     @Override
-    public void deleteById(long id) {
-        gradeRepository.deleteById(id);
+    public String deleteById(long id) {
+        try{
+            gradeRepository.deleteById(id);
+            return "ok";
+        }
+        catch (Exception e){
+            return null;
+        }
     }
 
     @Override

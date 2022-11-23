@@ -30,8 +30,14 @@ public class RecruiterController {
     }
 
     @DeleteMapping("/{id}")
-    void deleteById(@PathVariable Long id) {
-        recruiterService.deleteById(id);
+    String deleteById(@PathVariable Long id) {
+        try{
+            recruiterService.deleteById(id);
+            return "ok";
+        }
+        catch(Exception e){
+            return null;
+        }
     }
 
     @GetMapping("/companyName/{companyName}")

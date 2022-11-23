@@ -34,7 +34,13 @@ public class RecruiterServiceImpl implements RecruiterService {
     }
 
     @Override
-    public void deleteById(long id) {
-        recruiterRepository.deleteById(id);
+    public String deleteById(long id) {
+        try{
+            recruiterRepository.deleteById(id);
+            return "ok";
+        }
+        catch (Exception e){
+            return null;
+        }
     }
 }

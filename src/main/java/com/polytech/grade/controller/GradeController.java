@@ -29,8 +29,14 @@ public class GradeController {
     }
 
     @DeleteMapping("/{id}")
-    void deleteById(@PathVariable Long id) {
-        gradeService.deleteById(id);
+    String deleteById(@PathVariable Long id) {
+        try{
+            gradeService.deleteById(id);
+            return "ok";
+        }
+        catch(Exception e){
+            return null;
+        }
     }
 
     @GetMapping("/mark/{mark}")

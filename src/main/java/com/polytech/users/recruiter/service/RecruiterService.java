@@ -11,5 +11,5 @@ public interface RecruiterService {
     Optional<RecruiterEntity> findById(long id);
 
     Optional<RecruiterEntity> findByCompanyName(String companyName);
-    void deleteById(long id);
+    String deleteById(long id);
 }

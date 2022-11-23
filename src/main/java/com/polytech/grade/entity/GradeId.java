@@ -3,9 +3,9 @@ package com.polytech.grade.entity;
 import java.io.Serializable;
 
 public class GradeId implements Serializable {
-    private long idRecruiter;
+    private final long idRecruiter;
 
-    private long idJobseker;
+    private final long idJobseker;
 
     public GradeId(long idRecruiter, long idJobseker) {
         this.idRecruiter = idRecruiter;

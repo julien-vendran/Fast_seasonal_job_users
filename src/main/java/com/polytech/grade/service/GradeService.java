@@ -11,7 +11,7 @@ public interface GradeService {
 
     Optional<GradeEntity> findById(long id);
 
-    void deleteById(long id);
+    String deleteById(long id);
 
     Optional<GradeEntity> findByMark(float mark);
 
