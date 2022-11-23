@@ -28,9 +28,11 @@ CREATE TABLE recruiter
 DROP TABLE IF EXISTS grade;
 CREATE TABLE grade
 (
-    FOREIGN KEY (idRecruiter) REFERENCES recruiter(id) PRIMARY KEY,
-    FOREIGN KEY (idJobseeker) REFERENCES jobseeker(id) PRIMARY KEY,
-    grade       FLOAT
+    FOREIGN KEY (idRecruiter) REFERENCES recruiter(id),
+    FOREIGN KEY (idJobseeker) REFERENCES jobseeker(id),
+    mark       FLOAT,
+    comment    VARCHAR(200),
+    PRIMARY KEY (idRecruiter, idJobseeker)
 );
 
 CREATE SEQUENCE hibernate_sequence START 1;
