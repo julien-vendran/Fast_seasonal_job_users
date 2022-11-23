@@ -3,15 +3,13 @@ package com.polytech.grade.service;
 import com.polytech.grade.entity.GradeEntity;
 import com.polytech.grade.repository.GradeRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-@Slf4j
-public class GradeServiceImpl implements GradeService{
+public class GradeServiceImpl implements GradeService {
 
     public final GradeRepository gradeRepository;
 
