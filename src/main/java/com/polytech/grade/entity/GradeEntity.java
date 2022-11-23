@@ -23,4 +23,7 @@ public class GradeEntity {
     @Column(name="mark", nullable=false)
     private float mark;
 
+    @Column(name="comment", length=200, nullable=false)
+    private float comment;
+
 }
