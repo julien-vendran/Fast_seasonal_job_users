@@ -18,7 +18,7 @@ CREATE TABLE recruiter
     id          serial PRIMARY KEY,
     lastname    VARCHAR(100),
     firstname   VARCHAR(100),
-    companyName VARCHAR(100),
+    company_name VARCHAR(100),
     city        VARCHAR(100),
     job         VARCHAR(100),
     phone       VARCHAR(20),
@@ -28,11 +28,13 @@ CREATE TABLE recruiter
 DROP TABLE IF EXISTS grade;
 CREATE TABLE grade
 (
-    FOREIGN KEY (idRecruiter) REFERENCES recruiter(id),
-    FOREIGN KEY (idJobseeker) REFERENCES jobseeker(id),
+    idRecruiter BIGINT,
+    idJobseeker BIGINT,
     mark       FLOAT,
     comment    VARCHAR(200),
-    PRIMARY KEY (idRecruiter, idJobseeker)
+    PRIMARY KEY (idRecruiter, idJobseeker),
+    FOREIGN KEY (idRecruiter) REFERENCES recruiter(id),
+    FOREIGN KEY (idJobseeker) REFERENCES jobseeker(id)
 );
 
 CREATE SEQUENCE hibernate_sequence START 1;

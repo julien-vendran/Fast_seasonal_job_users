@@ -24,7 +24,7 @@ public class RecruiterEntity {
     @Column(name="firstname", length=100, nullable=false)
     private String firstname;
 
-    @Column(name="companyName", length=100, nullable=false)
+    @Column(name="company_name", length=100, nullable=false)
     private String companyName;
 
     @Column(name="city", length=100, nullable=false)

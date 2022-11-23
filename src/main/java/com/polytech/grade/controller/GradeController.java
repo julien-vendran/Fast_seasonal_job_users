@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/recruiter")
+@RequestMapping("/api/grade")
 @RequiredArgsConstructor
 public class GradeController {
     private final GradeService gradeService;

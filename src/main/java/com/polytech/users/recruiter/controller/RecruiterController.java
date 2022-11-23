@@ -34,7 +34,7 @@ public class RecruiterController {
         recruiterService.deleteById(id);
     }
 
-    @GetMapping("/{companyName}")
+    @GetMapping("/companyName/{companyName}")
     Optional<RecruiterEntity> findByCompanyName(@PathVariable String companyName) {
         return recruiterService.findByCompanyName(companyName);
     }
