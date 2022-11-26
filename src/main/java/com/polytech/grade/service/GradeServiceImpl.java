@@ -1,21 +1,42 @@
 package com.polytech.grade.service;
 
 import com.polytech.grade.entity.GradeEntity;
+import com.polytech.grade.entity.GradeId;
 import com.polytech.grade.repository.GradeRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class GradeServiceImpl implements GradeService {
 
     public final GradeRepository gradeRepository;
 
     @Override
-    public GradeEntity save(GradeEntity grade) {
-        return gradeRepository.save(grade);
+    public ResponseEntity<GradeEntity> save(GradeEntity grade) {
+
+        Iterable<Long> hasJSworkedWithRecruiter = gradeRepository.hasWorkedTogether(grade.getRecruiter(), grade.getJobseeker());
+
+        List<Long> toList = StreamSupport.stream(hasJSworkedWithRecruiter.spliterator(), false)
+                .collect(Collectors.toList());
+        try{
+            if(!toList.isEmpty()) { //the recruiter and jobseeker have worked together before
+                return ResponseEntity.ok(gradeRepository.save(grade));
+            }
+        }
+        catch(Exception e){
+            log.error("Recruiter and Jobseeker haven't worked together, save impossible.");
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(grade);
     }
 
     @Override
@@ -24,28 +45,34 @@ public class GradeServiceImpl implements GradeService {
     }
 
     @Override
-    public Optional<GradeEntity> findById(long id) {
-        return gradeRepository.findById(id);
+    public Optional<GradeEntity> findById(GradeId idGrade) {
+        return gradeRepository.findById(idGrade);
     }
 
     @Override
-    public void deleteById(long id) {
-        gradeRepository.deleteById(id);
+    public ResponseEntity<String> deleteById(GradeId idGrade) {
+        try{
+            gradeRepository.deleteById(idGrade);
+            return ResponseEntity.ok("Delete grade completed.");
+        }
+        catch (Exception e){
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @Override
-    public Optional<GradeEntity> findByMark(float mark) {
+    public Iterable<GradeEntity> findByMark(int mark) {
         return gradeRepository.findByMark(mark);
     }
 
     @Override
-    public Iterable<GradeEntity> findByRecruiter(long id) {
-        return gradeRepository.findByRecruiter(id);
+    public Iterable<GradeEntity> findByRecruiter(long idRecruiter) {
+        return gradeRepository.findByRecruiter(idRecruiter);
     }
 
     @Override
-    public Iterable<GradeEntity> findByJobseeker(long id) {
-        return gradeRepository.findByJobseeker(id);
+    public Iterable<GradeEntity> findByJobseeker(long idJobseeker) {
+        return gradeRepository.findByJobseeker(idJobseeker);
     }
 
 

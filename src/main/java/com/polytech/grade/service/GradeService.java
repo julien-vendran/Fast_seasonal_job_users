@@ -1,21 +1,24 @@
 package com.polytech.grade.service;
 
 import com.polytech.grade.entity.GradeEntity;
+import com.polytech.grade.entity.GradeId;
+import org.springframework.http.ResponseEntity;
+
 
 import java.util.Optional;
 
 public interface GradeService {
-    GradeEntity save(GradeEntity grade);
+    ResponseEntity<GradeEntity> save(GradeEntity grade) throws NullPointerException;
 
     Iterable<GradeEntity> findAll();
 
-    Optional<GradeEntity> findById(long id);
+    Optional<GradeEntity> findById(GradeId idGrade);
 
-    void deleteById(long id);
+    ResponseEntity<String> deleteById(GradeId idGrade);
 
-    Optional<GradeEntity> findByMark(float mark);
+    Iterable<GradeEntity> findByMark(int mark);
 
-    Iterable<GradeEntity> findByRecruiter(long id);
+    Iterable<GradeEntity> findByRecruiter(long idRecruiter);
 
-    Iterable<GradeEntity> findByJobseeker(long id);
+    Iterable<GradeEntity> findByJobseeker(long idJobseeker);
 }
