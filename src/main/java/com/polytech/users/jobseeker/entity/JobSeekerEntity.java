@@ -19,6 +19,10 @@ public class JobSeekerEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cv_id", referencedColumnName = "id")
+    private FilesEntity cv;
+
     @Column(name = "lastname", length = 100, nullable = false)
     private String lastname;
 

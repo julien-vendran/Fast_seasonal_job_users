@@ -1,27 +1,28 @@
 DROP DATABASE IF EXISTS fast_seasonal;
 
+DROP TABLE IF EXISTS cv;
+CREATE TABLE cv
+(
+    id           serial PRIMARY KEY,
+    name         VARCHAR,
+    content_type VARCHAR,
+    size         BIGINT,
+    data         OID
+);
+
 DROP TABLE IF EXISTS jobseeker;
 CREATE TABLE jobseeker
 (
     id        serial PRIMARY KEY,
+    cv_id     BIGINT,
     lastname  VARCHAR(100),
     firstname VARCHAR(100),
     city      VARCHAR(100),
     job       VARCHAR(100),
     phone     VARCHAR(20),
     email     VARCHAR(100),
-    keywords  VARCHAR(500) -- Split on ","
-);
-
-DROP TABLE IF EXISTS files;
-CREATE TABLE files
-(
-    id serial PRIMARY KEY,
-    jobseeker_id BIGINT,
-    name VARCHAR,
-    content_type VARCHAR,
-    size BIGINT,
-    data OID
+    keywords  VARCHAR(500), -- Split on ","
+    FOREIGN KEY (cv_id) REFERENCES cv (id)
 );
 
 DROP TABLE IF EXISTS recruiter;

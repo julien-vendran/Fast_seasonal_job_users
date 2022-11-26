@@ -9,7 +9,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "files")
+@Table(name = "cv")
 @Getter
 @Setter
 @ToString
@@ -18,10 +18,6 @@ public class FilesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id", referencedColumnName = "id")
-    private JobSeekerEntity jobseekerId;
 
     private String name;
 
