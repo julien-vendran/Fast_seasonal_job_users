@@ -1,5 +1,6 @@
 package com.polytech.users.jobseeker.controller;
 
+import com.polytech.users.jobseeker.dto.JobseekerCreationDto;
 import com.polytech.users.jobseeker.entity.FilesEntity;
 import com.polytech.users.jobseeker.entity.JobSeekerEntity;
 import com.polytech.users.jobseeker.service.FileService;
@@ -25,20 +26,29 @@ public class JobSeekerController {
     private final FileService fileService;
 
     @PostMapping
-    JobSeekerEntity save(@RequestBody JobSeekerEntity jobSeeker) {
-        return jobSeekerService.save(jobSeeker);
+    ResponseEntity<JobSeekerEntity> save(@ModelAttribute JobseekerCreationDto dto) {
+        try {
+            FilesEntity cv = fileService.save(dto.getFile());
+            return ResponseEntity.ok(jobSeekerService.save(dto.jobSeekerEntity(cv)));
+        } catch (IOException e) {
+            //throw new RuntimeException(e);
+            return ResponseEntity.notFound().build();
+        }
     }
 
-    @PutMapping("/cv/{id}")
-    ResponseEntity<FilesEntity> uploadCV(@PathVariable long id, @RequestParam("file") MultipartFile file) {
+    @PutMapping("/{id}/cv")
+    ResponseEntity<JobSeekerEntity> updateCv(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
         try {
-            return ResponseEntity.ok(fileService.save(id, file));
-        } catch (IOException e) {
+            FilesEntity updatedCv = fileService.save(file);
+            return ResponseEntity.ok(jobSeekerService.updateCv(id, updatedCv));
+        } catch (IOException | RuntimeException e) {
+            log.error("Error occured while updating CV", e);
             return ResponseEntity.badRequest().build();
         }
     }
 
     @GetMapping("/cv/{id}")
+        //TODO: Get by jobseeker
     ResponseEntity<byte[]> getCv(@PathVariable Long id) {
         Optional<FilesEntity> fileEntityOptional = fileService.getFile(id);
         if (fileEntityOptional.isEmpty()) {

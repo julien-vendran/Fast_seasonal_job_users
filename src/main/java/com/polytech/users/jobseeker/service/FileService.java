@@ -17,7 +17,7 @@ public class FileService {
 
     private final FileRepository fileRepository;
 
-    public FilesEntity save(Long id, MultipartFile file) throws IOException {
+    public FilesEntity save(MultipartFile file) throws IOException {
         FilesEntity fileEntity = new FilesEntity();
         fileEntity.setName(StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename())));
         fileEntity.setContentType(file.getContentType());
@@ -29,9 +29,5 @@ public class FileService {
 
     public Optional<FilesEntity> getFile(Long id) {
         return fileRepository.findById(id);
-    }
-
-    public Iterable<FilesEntity> getAllFiles() {
-        return fileRepository.findAll();
     }
 }
