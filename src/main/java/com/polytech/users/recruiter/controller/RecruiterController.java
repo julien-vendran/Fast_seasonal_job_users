@@ -3,6 +3,7 @@ package com.polytech.users.recruiter.controller;
 import com.polytech.users.recruiter.entity.RecruiterEntity;
 import com.polytech.users.recruiter.service.RecruiterService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -30,18 +31,12 @@ public class RecruiterController {
     }
 
     @DeleteMapping("/{id}")
-    String deleteById(@PathVariable Long id) {
-        try{
-            recruiterService.deleteById(id);
-            return "ok";
-        }
-        catch(Exception e){
-            return null;
-        }
+    ResponseEntity<String> deleteById(@PathVariable Long id) {
+        return recruiterService.deleteById(id);
     }
 
     @GetMapping("/companyName/{companyName}")
-    Optional<RecruiterEntity> findByCompanyName(@PathVariable String companyName) {
+    Iterable<RecruiterEntity> findByCompanyName(@PathVariable String companyName) {
         return recruiterService.findByCompanyName(companyName);
     }
 }

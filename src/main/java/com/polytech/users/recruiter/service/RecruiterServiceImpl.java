@@ -3,6 +3,8 @@ package com.polytech.users.recruiter.service;
 import com.polytech.users.recruiter.entity.RecruiterEntity;
 import com.polytech.users.recruiter.repository.RecruiterRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -29,18 +31,18 @@ public class RecruiterServiceImpl implements RecruiterService {
     }
 
     @Override
-    public Optional<RecruiterEntity> findByCompanyName(String companyName) {
+    public Iterable<RecruiterEntity> findByCompanyName(String companyName) {
         return recruiterRepository.findByCompanyName(companyName);
     }
 
     @Override
-    public String deleteById(long id) {
+    public ResponseEntity<String> deleteById(long id) {
         try{
             recruiterRepository.deleteById(id);
-            return "ok";
+            return ResponseEntity.ok("Delete recruiter completed.");
         }
         catch (Exception e){
-            return null;
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 }
