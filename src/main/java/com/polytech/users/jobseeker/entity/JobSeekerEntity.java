@@ -19,21 +19,24 @@ public class JobSeekerEntity {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name="lastname", length=100, nullable=false)
+    @Column(name = "lastname", length = 100, nullable = false)
     private String lastname;
 
-    @Column(name="firstname", length=100, nullable=false)
+    @Column(name = "firstname", length = 100, nullable = false)
     private String firstname;
 
-    @Column(name="city", length=100, nullable=false)
+    @Column(name = "city", length = 100, nullable = false)
     private String city;
 
-    @Column(name="job", length=100, nullable=false)
+    @Column(name = "job", length = 100, nullable = false)
     private String job;
 
-    @Column(name="phone", length=20, nullable=false)
+    @Column(name = "phone", length = 20, nullable = false)
     private String phone;
 
-    @Column(name="email", length=100, nullable=false)
+    @Column(name = "email", length = 100, nullable = false)
     private String email;
+
+    @Column(name = "keywords", length = 500)
+    private String keywords; // Split on ","
 }

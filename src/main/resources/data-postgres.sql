@@ -9,7 +9,19 @@ CREATE TABLE jobseeker
     city      VARCHAR(100),
     job       VARCHAR(100),
     phone     VARCHAR(20),
-    email     VARCHAR(100)
+    email     VARCHAR(100),
+    keywords  VARCHAR(500) -- Split on ","
+);
+
+DROP TABLE IF EXISTS files;
+CREATE TABLE files
+(
+    id serial PRIMARY KEY,
+    jobseeker_id BIGINT,
+    name VARCHAR,
+    content_type VARCHAR,
+    size BIGINT,
+    data OID
 );
 
 DROP TABLE IF EXISTS recruiter;
