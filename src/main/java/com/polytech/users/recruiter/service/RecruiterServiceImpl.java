@@ -3,7 +3,6 @@ package com.polytech.users.recruiter.service;
 import com.polytech.users.recruiter.entity.RecruiterEntity;
 import com.polytech.users.recruiter.repository.RecruiterRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -37,11 +36,10 @@ public class RecruiterServiceImpl implements RecruiterService {
 
     @Override
     public ResponseEntity<String> deleteById(long id) {
-        try{
+        try {
             recruiterRepository.deleteById(id);
             return ResponseEntity.ok("Delete recruiter completed.");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }

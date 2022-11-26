@@ -3,6 +3,7 @@ package com.polytech.grade.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Getter
 @Setter
@@ -12,18 +13,19 @@ import javax.persistence.*;
 @IdClass(GradeId.class)
 @Entity(name = "grade")
 @Table(name = "grade")
-public class GradeEntity {
+public class GradeEntity implements Serializable {
 
     @Id
-    private Long idRecruiter;
+    @Column(name = "recruiter", nullable = false)
+    private Long recruiter;
 
     @Id
-    private Long idJobseker;
+    @Column(name = "jobseeker", nullable = false)
+    private Long jobseeker;
 
     @Column(name="mark", nullable=false)
-    private float mark;
+    private int mark;
 
     @Column(name="comment", length=200, nullable=false)
     private String comment;
-
 }

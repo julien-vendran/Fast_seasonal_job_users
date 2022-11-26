@@ -1,8 +1,10 @@
 package com.polytech.grade.controller;
 
 import com.polytech.grade.entity.GradeEntity;
+import com.polytech.grade.entity.GradeId;
 import com.polytech.grade.service.GradeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -14,44 +16,38 @@ public class GradeController {
     private final GradeService gradeService;
 
     @PostMapping
-    GradeEntity save(@RequestBody GradeEntity gradeEntity) {
+    ResponseEntity<GradeEntity> save(@RequestBody GradeEntity gradeEntity) {
         return gradeService.save(gradeEntity);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     Iterable<GradeEntity> findAll() {
         return gradeService.findAll();
     }
 
-    @GetMapping("/{id}")
-    Optional<GradeEntity> findById(@PathVariable long id) {
-        return gradeService.findById(id);
+    @GetMapping
+    Optional<GradeEntity> findById(@RequestBody GradeId idGrade) {
+        return gradeService.findById(idGrade);
     }
 
-    @DeleteMapping("/{id}")
-    String deleteById(@PathVariable Long id) {
-        try{
-            gradeService.deleteById(id);
-            return "ok";
-        }
-        catch(Exception e){
-            return null;
-        }
+    @DeleteMapping
+    ResponseEntity<String> deleteById(@RequestBody GradeId idGrade) {
+        return gradeService.deleteById(idGrade);
     }
 
     @GetMapping("/mark/{mark}")
-    Optional<GradeEntity> findByMark(@PathVariable float mark) {
+    Iterable<GradeEntity> findByMark(@PathVariable int mark) {
         return gradeService.findByMark(mark);
     }
 
-    @GetMapping("/recruiter/{id}")
-    Iterable<GradeEntity> findByRecruiter(@PathVariable long id){
-        return gradeService.findByRecruiter(id);
+    @GetMapping("/recruiter/{idRecruiter}")
+    Iterable<GradeEntity> findByRecruiter(@PathVariable long idRecruiter){
+        return gradeService.findByRecruiter(idRecruiter);
     }
 
-    @GetMapping("/jobseeker/{id}")
-    Iterable<GradeEntity> findByJobseeker(@PathVariable long id){
-        return gradeService.findByJobseeker(id);
+    @GetMapping("/jobseeker/{idJobseeker}")
+    Iterable<GradeEntity> findByJobseeker(@PathVariable long idJobseeker){
+        return gradeService.findByJobseeker(idJobseeker);
     }
 
 }

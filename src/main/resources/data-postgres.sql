@@ -28,13 +28,13 @@ CREATE TABLE recruiter
 DROP TABLE IF EXISTS grade;
 CREATE TABLE grade
 (
-    idRecruiter BIGINT,
-    idJobseeker BIGINT,
-    mark       FLOAT,
+    recruiter BIGINT,
+    jobseeker BIGINT,
+    mark       INTEGER,
     comment    VARCHAR(200),
-    PRIMARY KEY (idRecruiter, idJobseeker),
-    FOREIGN KEY (idRecruiter) REFERENCES recruiter(id),
-    FOREIGN KEY (idJobseeker) REFERENCES jobseeker(id)
+    PRIMARY KEY (recruiter, jobseeker),
+    FOREIGN KEY (recruiter) REFERENCES recruiter(id),
+    FOREIGN KEY (jobseeker) REFERENCES jobseeker(id)
 );
 
 DROP TABLE IF EXISTS offer;
