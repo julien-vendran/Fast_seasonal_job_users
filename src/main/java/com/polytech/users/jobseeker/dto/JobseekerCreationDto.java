@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.Serializable;
+import java.util.Collections;
 
 @Getter
 @Setter
@@ -20,6 +21,7 @@ public class JobseekerCreationDto implements Serializable {
     private String email;
     private String keywords;
     private MultipartFile file;
+
     public JobSeekerEntity jobSeekerEntity(FilesEntity registeredCv) {
         return new JobSeekerEntity(
             null,
@@ -30,7 +32,8 @@ public class JobseekerCreationDto implements Serializable {
             getJob(),
             getPhone(),
             getEmail(),
-            getKeywords()
+            getKeywords(),
+            Collections.emptySet()
         );
     }
 }

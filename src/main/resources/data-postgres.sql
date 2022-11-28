@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS fast_seasonal;
 DROP TABLE IF EXISTS cv;
 CREATE TABLE cv
 (
-    id           serial PRIMARY KEY,
+    id           SERIAL PRIMARY KEY,
     name         VARCHAR,
     content_type VARCHAR,
     size         BIGINT,
@@ -13,7 +13,7 @@ CREATE TABLE cv
 DROP TABLE IF EXISTS jobseeker;
 CREATE TABLE jobseeker
 (
-    id        serial PRIMARY KEY,
+    id        SERIAL PRIMARY KEY,
     cv_id     BIGINT,
     lastname  VARCHAR(100),
     firstname VARCHAR(100),
@@ -28,7 +28,7 @@ CREATE TABLE jobseeker
 DROP TABLE IF EXISTS recruiter;
 CREATE TABLE recruiter
 (
-    id          serial PRIMARY KEY,
+    id          SERIAL PRIMARY KEY,
     lastname    VARCHAR(100),
     firstname   VARCHAR(100),
     company_name VARCHAR(100),
@@ -50,10 +50,10 @@ CREATE TABLE grade
     FOREIGN KEY (jobseeker) REFERENCES jobseeker(id)
 );
 
-DROP TABLE IF EXISTS offer;
+DROP TABLE IF EXISTS offer CASCADE;
 CREATE TABLE offer
 (
-    idOffer serial PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     title  VARCHAR(100),
     description VARCHAR(1000),
     publishDay DATE,
@@ -69,14 +69,16 @@ CREATE TABLE offer
     FOREIGN KEY (author) REFERENCES recruiter(id)
 );
 
-DROP TABLE IF EXISTS jobseekerJoinOffer;
-CREATE TABLE jobseekerJoinOffer
+DROP TABLE IF EXISTS jobseeker_offer;
+CREATE TABLE jobseeker_offer
 (
-    idOffer BIGINT,
-    idJobseeker BIGINT,
-    PRIMARY KEY (idJobseeker, idOffer),
-    FOREIGN KEY (idJobseeker) REFERENCES jobseeker(id),
-    FOREIGN KEY (idOffer) REFERENCES offer(idOffer)
+    jobseeker_id BIGINT,
+    offer_id BIGINT,
+    FOREIGN KEY (jobseeker_id) REFERENCES jobseeker(id),
+    FOREIGN KEY (offer_id) REFERENCES offer(id),
+    PRIMARY KEY (jobseeker_id,offer_id)
+
+);
 
 );
 

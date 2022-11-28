@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -43,4 +45,15 @@ public class JobSeekerEntity {
 
     @Column(name = "keywords", length = 500)
     private String keywords; // Split on ","
+
+    @ManyToMany
+    @JoinTable(
+        name = "jobseeker_offer",
+        joinColumns = @JoinColumn(name = "jobseeker_id"),
+        inverseJoinColumns = @JoinColumn(name = "offer_id"))
+    private Set<OfferEntity> offers;
+
+    public Set<OfferEntity> getOffers() {
+        return offers == null ? new HashSet<>() : offers;
+    }
 }
