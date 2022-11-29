@@ -6,7 +6,6 @@ import com.polytech.users.jobseeker.entity.JobSeekerEntity;
 import com.polytech.users.jobseeker.entity.OfferEntity;
 import com.polytech.users.jobseeker.service.FileService;
 import com.polytech.users.jobseeker.service.JobSeekerService;
-import com.polytech.users.jobseeker.service.OfferService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
@@ -26,7 +25,6 @@ public class JobSeekerController {
 
     private final JobSeekerService jobSeekerService;
     private final FileService fileService;
-    private final OfferService offerService;
 
     @PostMapping
     ResponseEntity<JobSeekerEntity> save(@ModelAttribute JobseekerCreationDto dto) {
@@ -82,18 +80,11 @@ public class JobSeekerController {
 
     @PostMapping("{userId}/apply/{offerId}")
     public ResponseEntity<Void> applyOffer(@PathVariable Long userId, @PathVariable Long offerId) {
-        jobSeekerService.findById(userId)
-            .map(user -> {
-                OfferEntity offer = offerService.getById(offerId);
-                if (offer != null && offer.getIdOffer() != null) {
-                    offer.getJobseekers().add(user);
-                    offerService.save(offer);
-                    user.getOffers().add(offer);
-                    jobSeekerService.save(user);
-                }
-                return user;
-            }).orElseThrow();
-
+        try {
+            jobSeekerService.applyOffer(userId, offerId);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
         return ResponseEntity.ok().build();
     }
 }

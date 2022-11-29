@@ -15,4 +15,6 @@ public interface JobSeekerService {
     void deleteById(long id);
 
     JobSeekerEntity updateCv(Long id, FilesEntity updatedCv);
+
+    void applyOffer(Long userId, Long offerId);
 }
