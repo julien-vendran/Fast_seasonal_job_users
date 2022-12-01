@@ -16,6 +16,7 @@ public class JobseekerCreationDto implements Serializable {
     private String lastname;
     private String firstname;
     private String city;
+    private String region;
     private String job;
     private String phone;
     private String email;
@@ -29,6 +30,7 @@ public class JobseekerCreationDto implements Serializable {
             getLastname(),
             getFirstname(),
             getCity(),
+            getRegion(),
             getJob(),
             getPhone(),
             getEmail(),

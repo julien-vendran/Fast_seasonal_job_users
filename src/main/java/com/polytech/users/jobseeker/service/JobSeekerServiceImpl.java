@@ -40,7 +40,6 @@ public class JobSeekerServiceImpl implements JobSeekerService {
     @Override
     public JobSeekerEntity updateCv(Long id, FilesEntity updatedCv) {
         return findById(id).map(jobSeeker -> {
-            deleteById(id);
             jobSeeker.setCv(updatedCv);
             return save(jobSeeker);
         }).orElseThrow(() -> new RuntimeException("Searched user not found")); //TODO: Changer ça
