@@ -33,6 +33,11 @@ public class JobSeekerServiceImpl implements JobSeekerService {
     }
 
     @Override
+    public Optional<JobSeekerEntity> findByEmail(String email) {
+        return jobSeekerRepository.findByEmail(email);
+    }
+
+    @Override
     public void deleteById(long id) {
         jobSeekerRepository.deleteById(id);
     }

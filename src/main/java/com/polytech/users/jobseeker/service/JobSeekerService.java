@@ -12,6 +12,8 @@ public interface JobSeekerService {
 
     Optional<JobSeekerEntity> findById(long id);
 
+    Optional<JobSeekerEntity> findByEmail(String email);
+
     void deleteById(long id);
 
     JobSeekerEntity updateCv(Long id, FilesEntity updatedCv);

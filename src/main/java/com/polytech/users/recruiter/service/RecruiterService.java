@@ -10,6 +10,7 @@ public interface RecruiterService {
     RecruiterEntity save(RecruiterEntity recruiter);
     Iterable<RecruiterEntity> findAll();
     Optional<RecruiterEntity> findById(long id);
+    Optional<RecruiterEntity> findByEmail(String email);
     Iterable<RecruiterEntity> findByCompanyName(String companyName);
     ResponseEntity<String> deleteById(long id);
 }
