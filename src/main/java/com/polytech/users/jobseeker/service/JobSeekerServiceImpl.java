@@ -33,7 +33,7 @@ public class JobSeekerServiceImpl implements JobSeekerService {
     }
 
     @Override
-    public Optional<JobSeekerEntity> findByEmail(String email) {
+    public Optional<Long> findByEmail(String email) {
         return jobSeekerRepository.findByEmail(email);
     }
 

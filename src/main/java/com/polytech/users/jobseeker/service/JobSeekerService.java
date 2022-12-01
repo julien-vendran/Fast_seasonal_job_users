@@ -12,7 +12,7 @@ public interface JobSeekerService {
 
     Optional<JobSeekerEntity> findById(long id);
 
-    Optional<JobSeekerEntity> findByEmail(String email);
+    Optional<Long> findByEmail(String email);
 
     void deleteById(long id);
 
