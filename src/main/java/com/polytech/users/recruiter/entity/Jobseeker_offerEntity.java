@@ -28,5 +28,4 @@ public class Jobseeker_offerEntity {
     @Column(name = "approved")
     private boolean approved;
 
-
 }
