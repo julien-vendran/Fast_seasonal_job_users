@@ -54,8 +54,9 @@ public class RecruiterServiceImpl implements RecruiterService {
     }
 
     @Override
-    public void validateJs(long jsId, long offerId) {
-        joinRepository.save(new Jobseeker_offerEntity(jsId,offerId,true));
+    public void validateJs(Long jsId, Long offerId) {
+        Jobseeker_offerEntity js = new Jobseeker_offerEntity(jsId,offerId,true);
+        joinRepository.save(js);
     }
 
 

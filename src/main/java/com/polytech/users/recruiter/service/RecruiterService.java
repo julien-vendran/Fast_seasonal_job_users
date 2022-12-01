@@ -13,5 +13,5 @@ public interface RecruiterService {
     Optional<RecruiterEntity> findByEmail(String email);
     Iterable<RecruiterEntity> findByCompanyName(String companyName);
     ResponseEntity<String> deleteById(long id);
-    void validateJs(long jsId, long offerId);
+    void validateJs(Long jsId, Long offerId);
 }

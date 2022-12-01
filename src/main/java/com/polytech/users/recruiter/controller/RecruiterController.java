@@ -40,8 +40,8 @@ public class RecruiterController {
         return recruiterService.findByCompanyName(companyName);
     }
 
-    @PostMapping("/validateJsToOffer")
-    void validateJsToOffer(@RequestParam long jsId, @RequestParam long offerId){
-        recruiterService.validateJs(jsId,offerId);
+    @GetMapping("/validateJsToOffer")
+    void validateJsToOffer(@RequestParam String jsId, @RequestParam String offerId){
+        recruiterService.validateJs(Long.parseLong(jsId),Long.parseLong(offerId));
     }
 }

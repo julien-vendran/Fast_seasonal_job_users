@@ -1,7 +1,13 @@
 package com.polytech.users.recruiter.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
 import javax.persistence.IdClass;
 import java.io.Serializable;
+@Data
+@RequiredArgsConstructor
 public class Jobseeker_offerId implements Serializable {
     private Long jobseeker_id;
 
