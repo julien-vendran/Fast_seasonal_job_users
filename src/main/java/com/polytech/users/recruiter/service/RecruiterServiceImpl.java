@@ -1,10 +1,13 @@
 package com.polytech.users.recruiter.service;
 
+import com.polytech.users.recruiter.entity.Jobseeker_offerEntity;
 import com.polytech.users.recruiter.entity.RecruiterEntity;
+import com.polytech.users.recruiter.repository.JoinRepository;
 import com.polytech.users.recruiter.repository.RecruiterRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
@@ -13,6 +16,8 @@ import java.util.Optional;
 public class RecruiterServiceImpl implements RecruiterService {
 
     private final RecruiterRepository recruiterRepository;
+    private final JoinRepository joinRepository;
+
 
     @Override
     public RecruiterEntity save(RecruiterEntity recruiter) {
@@ -48,4 +53,11 @@ public class RecruiterServiceImpl implements RecruiterService {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
+
+    @Override
+    public void validateJs(long jsId, long offerId) {
+        joinRepository.save(new Jobseeker_offerEntity(jsId,offerId,true));
+    }
+
+
 }

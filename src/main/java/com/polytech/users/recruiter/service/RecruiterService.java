@@ -1,5 +1,6 @@
 package com.polytech.users.recruiter.service;
 
+import com.polytech.users.recruiter.entity.Jobseeker_offerEntity;
 import com.polytech.users.recruiter.entity.RecruiterEntity;
 import org.springframework.http.ResponseEntity;
 
@@ -13,4 +14,5 @@ public interface RecruiterService {
     Optional<RecruiterEntity> findByEmail(String email);
     Iterable<RecruiterEntity> findByCompanyName(String companyName);
     ResponseEntity<String> deleteById(long id);
+    void validateJs(long jsId, long offerId);
 }

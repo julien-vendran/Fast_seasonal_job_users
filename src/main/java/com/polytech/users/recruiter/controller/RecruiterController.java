@@ -1,5 +1,6 @@
 package com.polytech.users.recruiter.controller;
 
+import com.polytech.users.recruiter.entity.Jobseeker_offerEntity;
 import com.polytech.users.recruiter.entity.RecruiterEntity;
 import com.polytech.users.recruiter.service.RecruiterService;
 import lombok.RequiredArgsConstructor;
@@ -38,5 +39,10 @@ public class RecruiterController {
     @GetMapping("/companyName/{companyName}")
     Iterable<RecruiterEntity> findByCompanyName(@PathVariable String companyName) {
         return recruiterService.findByCompanyName(companyName);
+    }
+
+    @PostMapping("/validateJsToOffer")
+    void validateJsToOffer(@RequestBody long jsId, @RequestBody long offerId){
+        recruiterService.validateJs(jsId,offerId);
     }
 }
