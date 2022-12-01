@@ -18,6 +18,7 @@ CREATE TABLE jobseeker
     lastname  VARCHAR(100),
     firstname VARCHAR(100),
     city      VARCHAR(100),
+    region    VARCHAR(100),
     job       VARCHAR(100),
     phone     VARCHAR(20),
     email     VARCHAR(100),
@@ -28,57 +29,55 @@ CREATE TABLE jobseeker
 DROP TABLE IF EXISTS recruiter;
 CREATE TABLE recruiter
 (
-    id          SERIAL PRIMARY KEY,
-    lastname    VARCHAR(100),
-    firstname   VARCHAR(100),
+    id           SERIAL PRIMARY KEY,
+    lastname     VARCHAR(100),
+    firstname    VARCHAR(100),
     company_name VARCHAR(100),
-    city        VARCHAR(100),
-    job         VARCHAR(100),
-    phone       VARCHAR(20),
-    email       VARCHAR(100)
+    city         VARCHAR(100),
+    job          VARCHAR(100),
+    phone        VARCHAR(20),
+    email        VARCHAR(100)
 );
 
 DROP TABLE IF EXISTS grade;
 CREATE TABLE grade
 (
-    recruiter BIGINT,
-    jobseeker BIGINT,
-    mark       INTEGER,
-    comment    VARCHAR(200),
-    PRIMARY KEY (recruiter, jobseeker),
-    FOREIGN KEY (recruiter) REFERENCES recruiter(id),
-    FOREIGN KEY (jobseeker) REFERENCES jobseeker(id)
+    recruiter_id BIGINT,
+    jobseeker_id BIGINT,
+    mark      INTEGER,
+    comment   VARCHAR(200),
+    PRIMARY KEY (recruiter_id, jobseeker_id),
+    FOREIGN KEY (recruiter_id) REFERENCES recruiter (id),
+    FOREIGN KEY (jobseeker_id) REFERENCES jobseeker (id)
 );
 
 DROP TABLE IF EXISTS offer CASCADE;
 CREATE TABLE offer
 (
-    id SERIAL PRIMARY KEY,
-    title  VARCHAR(100),
-    description VARCHAR(1000),
-    publishDay DATE,
-    jobStartingDate DATE,
-    location VARCHAR(100),
-    jobNumber INTEGER,
-    salary FLOAT,
-    advantages VARCHAR(500),
-    job VARCHAR(100),
-    zones VARCHAR(100),
-    author BIGINT,
-    keywords VARCHAR(100),
-    FOREIGN KEY (author) REFERENCES recruiter(id)
+    id                SERIAL PRIMARY KEY,
+    title             VARCHAR(100),
+    description       VARCHAR(1000),
+    publish_day       DATE,
+    job_starting_date DATE,
+    city              VARCHAR(100),
+    region            VARCHAR(100),
+    jobnumber         INTEGER,
+    salary            FLOAT,
+    advantages        VARCHAR(500),
+    job               VARCHAR(100),
+    zones             VARCHAR(100),
+    author            VARCHAR(50),
+    keywords          VARCHAR(500)
 );
 
 DROP TABLE IF EXISTS jobseeker_offer;
 CREATE TABLE jobseeker_offer
 (
     jobseeker_id BIGINT,
-    offer_id BIGINT,
-    FOREIGN KEY (jobseeker_id) REFERENCES jobseeker(id),
-    FOREIGN KEY (offer_id) REFERENCES offer(id),
-    PRIMARY KEY (jobseeker_id,offer_id)
-
-);
+    offer_id     BIGINT,
+    FOREIGN KEY (jobseeker_id) REFERENCES jobseeker (id),
+    FOREIGN KEY (offer_id) REFERENCES offer (id),
+    PRIMARY KEY (jobseeker_id, offer_id)
 
 );
 
