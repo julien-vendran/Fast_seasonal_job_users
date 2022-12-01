@@ -61,7 +61,7 @@ CREATE TABLE offer
     job_starting_date DATE,
     city              VARCHAR(100),
     region            VARCHAR(100),
-    jobnumber         INTEGER,
+    job_number         INTEGER,
     salary            FLOAT,
     advantages        VARCHAR(500),
     job               VARCHAR(100),
@@ -76,10 +76,10 @@ CREATE TABLE jobseeker_offer
 (
     jobseeker_id BIGINT,
     offer_id     BIGINT,
+    approved    BOOLEAN,
     FOREIGN KEY (jobseeker_id) REFERENCES jobseeker (id),
     FOREIGN KEY (offer_id) REFERENCES offer (id),
     PRIMARY KEY (jobseeker_id, offer_id)
-
 );
 
 CREATE SEQUENCE hibernate_sequence START 1;
