@@ -1,6 +1,5 @@
 package com.polytech.users.recruiter.controller;
 
-import com.polytech.users.recruiter.entity.Jobseeker_offerEntity;
 import com.polytech.users.recruiter.entity.RecruiterEntity;
 import com.polytech.users.recruiter.service.RecruiterService;
 import lombok.RequiredArgsConstructor;

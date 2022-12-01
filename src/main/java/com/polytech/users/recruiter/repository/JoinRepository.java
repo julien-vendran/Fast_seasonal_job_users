@@ -1,7 +1,6 @@
 package com.polytech.users.recruiter.repository;
 
 import com.polytech.users.recruiter.entity.Jobseeker_offerEntity;
-import com.polytech.users.recruiter.entity.RecruiterEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
