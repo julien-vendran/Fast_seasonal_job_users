@@ -34,6 +34,9 @@ public class JobSeekerEntity {
     @Column(name = "city", length = 100, nullable = false)
     private String city;
 
+    @Column(name = "region", length = 100, nullable = false)
+    private String region;
+
     @Column(name = "job", length = 100, nullable = false)
     private String job;
 

@@ -48,15 +48,14 @@ public class JobSeekerController {
         }
     }
 
-    @GetMapping("/cv/{id}")
-        //TODO: Get by jobseeker
-    ResponseEntity<byte[]> getCv(@PathVariable Long id) {
-        Optional<FilesEntity> fileEntityOptional = fileService.getFile(id);
-        if (fileEntityOptional.isEmpty()) {
+    @GetMapping("/cv/{jobseekerId}")
+    ResponseEntity<byte[]> getCv(@PathVariable Long jobseekerId) {
+        Optional<JobSeekerEntity> jobseekerOptional = jobSeekerService.findById(jobseekerId);
+        if (jobseekerOptional.isEmpty()) {
             return ResponseEntity.notFound()
                 .build();
         }
-        FilesEntity fileEntity = fileEntityOptional.get();
+        FilesEntity fileEntity = jobseekerOptional.get().getCv();
         return ResponseEntity.ok()
             .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileEntity.getName() + "\"")
             .contentType(MediaType.valueOf(fileEntity.getContentType()))
