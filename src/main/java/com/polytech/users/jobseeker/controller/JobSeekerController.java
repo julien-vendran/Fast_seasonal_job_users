@@ -29,7 +29,10 @@ public class JobSeekerController {
     @PostMapping
     ResponseEntity<JobSeekerEntity> save(@ModelAttribute JobseekerCreationDto dto) {
         try {
-            FilesEntity cv = fileService.save(dto.getFile());
+            FilesEntity cv = null;
+            if (dto.getFile() != null) {
+                cv = fileService.save(dto.getFile());
+            }
             return ResponseEntity.ok(jobSeekerService.save(dto.jobSeekerEntity(cv)));
         } catch (IOException e) {
             //throw new RuntimeException(e);
@@ -37,7 +40,7 @@ public class JobSeekerController {
         }
     }
 
-    @PutMapping("/{id}/cv")
+    @PostMapping("/cv/{id}")
     ResponseEntity<JobSeekerEntity> updateCv(@PathVariable Long id, @RequestParam("file") MultipartFile file) {
         try {
             FilesEntity updatedCv = fileService.save(file);
