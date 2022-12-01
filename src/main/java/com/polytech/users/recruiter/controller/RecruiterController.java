@@ -41,7 +41,7 @@ public class RecruiterController {
     }
 
     @PostMapping("/validateJsToOffer")
-    void validateJsToOffer(@RequestBody long jsId, @RequestBody long offerId){
+    void validateJsToOffer(@RequestParam long jsId, @RequestParam long offerId){
         recruiterService.validateJs(jsId,offerId);
     }
 }
