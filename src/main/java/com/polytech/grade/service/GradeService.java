@@ -18,7 +18,7 @@ public interface GradeService {
 
     Iterable<GradeEntity> findByMark(int mark);
 
-    Iterable<GradeEntity> findByRecruiter(long idRecruiter);
+    Iterable<GradeEntity> findByRecruiter(long recruiter);
 
-    Iterable<GradeEntity> findByJobseeker(long idJobseeker);
+    Iterable<GradeEntity> findByJobseeker(long jobseeker);
 }

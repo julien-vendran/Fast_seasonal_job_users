@@ -14,10 +14,10 @@ public interface GradeRepository extends CrudRepository<GradeEntity, GradeId> {
     Iterable<GradeEntity> findByJobseeker(long jobseeker);
 
     @Query(
-            value = "SELECT idjobseeker " +
+            value = "SELECT jobseeker_id " +
                     "FROM offer o " +
-                    "JOIN jobseekerjoinoffer jo ON o.idoffer = jo.idoffer " +
-                    "WHERE o.author = :recruiter AND jo.idjobseeker = :jobseeker ; ",
+                    "JOIN jobseeker_offer jo ON o.id = jo.offer_id " +
+                    "WHERE o.author = :recruiter AND jo.jobseeker_id = :jobseeker ; ",
             nativeQuery = true)
     Iterable<Long> hasWorkedTogether(@Param("recruiter") long recruiter,
                                      @Param("jobseeker") long jobseeker);

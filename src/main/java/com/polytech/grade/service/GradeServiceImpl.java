@@ -33,10 +33,10 @@ public class GradeServiceImpl implements GradeService {
             }
         }
         catch(Exception e){
-            log.error("Recruiter and Jobseeker haven't worked together, save impossible.");
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.badRequest().build();
         }
-        return ResponseEntity.ok(grade);
+        log.error("Recruiter and Jobseeker haven't worked together, save impossible.");
+        return ResponseEntity.badRequest().build();
     }
 
     @Override
@@ -66,13 +66,13 @@ public class GradeServiceImpl implements GradeService {
     }
 
     @Override
-    public Iterable<GradeEntity> findByRecruiter(long idRecruiter) {
-        return gradeRepository.findByRecruiter(idRecruiter);
+    public Iterable<GradeEntity> findByRecruiter(long recruiter) {
+        return gradeRepository.findByRecruiter(recruiter);
     }
 
     @Override
-    public Iterable<GradeEntity> findByJobseeker(long idJobseeker) {
-        return gradeRepository.findByJobseeker(idJobseeker);
+    public Iterable<GradeEntity> findByJobseeker(long jobseeker) {
+        return gradeRepository.findByJobseeker(jobseeker);
     }
 
 
