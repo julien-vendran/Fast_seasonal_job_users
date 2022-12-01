@@ -30,6 +30,11 @@ public class RecruiterServiceImpl implements RecruiterService {
     }
 
     @Override
+    public Optional<RecruiterEntity> findByEmail(String email) {
+        return recruiterRepository.findByEmail(email);
+    }
+
+    @Override
     public Iterable<RecruiterEntity> findByCompanyName(String companyName) {
         return recruiterRepository.findByCompanyName(companyName);
     }
