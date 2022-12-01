@@ -34,6 +34,11 @@ public class RecruiterServiceImpl implements RecruiterService {
         return recruiterRepository.findByCompanyName(companyName);
     }
 
+/*    @Override
+    public Optional<RecruiterEntity> findByEmail(String email) {
+        return recruiterRepository.findByEmail(email);
+    }*/
+
     @Override
     public ResponseEntity<String> deleteById(long id) {
         try {

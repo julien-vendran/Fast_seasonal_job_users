@@ -40,14 +40,14 @@ public class GradeController {
         return gradeService.findByMark(mark);
     }
 
-    @GetMapping("/recruiter/{idRecruiter}")
-    Iterable<GradeEntity> findByRecruiter(@PathVariable long idRecruiter){
-        return gradeService.findByRecruiter(idRecruiter);
+    @GetMapping("/recruiter/{recruiter}")
+    Iterable<GradeEntity> findByRecruiter(@PathVariable long recruiter){
+        return gradeService.findByRecruiter(recruiter);
     }
 
-    @GetMapping("/jobseeker/{idJobseeker}")
-    Iterable<GradeEntity> findByJobseeker(@PathVariable long idJobseeker){
-        return gradeService.findByJobseeker(idJobseeker);
+    @GetMapping("/jobseeker/{jobseeker}")
+    Iterable<GradeEntity> findByJobseeker(@PathVariable long jobseeker){
+        return gradeService.findByJobseeker(jobseeker);
     }
 
 }
