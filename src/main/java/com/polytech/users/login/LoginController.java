@@ -30,10 +30,9 @@ public class LoginController {
             .map(ResponseEntity::ok)
             .orElseGet(() -> {
                 return jobSeekerService.findByEmail(email)
-                    .map(JobSeekerEntity::getId)
                     .map(LoginResponseDto::ofJobseeker)
                     .map(ResponseEntity::ok)
                     .orElseGet(() -> ResponseEntity.badRequest().build());
-            }); //todo: Ajouter le traitement du mot de passe
+            });
     }
 }

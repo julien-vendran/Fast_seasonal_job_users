@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Service
@@ -25,14 +24,12 @@ public class GradeServiceImpl implements GradeService {
 
         Iterable<Long> hasJSworkedWithRecruiter = gradeRepository.hasWorkedTogether(grade.getRecruiter(), grade.getJobseeker());
 
-        List<Long> toList = StreamSupport.stream(hasJSworkedWithRecruiter.spliterator(), false)
-                .collect(Collectors.toList());
-        try{
-            if(!toList.isEmpty()) { //the recruiter and jobseeker have worked together before
+        List<Long> toList = StreamSupport.stream(hasJSworkedWithRecruiter.spliterator(), false).toList();
+        try {
+            if (!toList.isEmpty()) { //the recruiter and jobseeker have worked together before
                 return ResponseEntity.ok(gradeRepository.save(grade));
             }
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
         log.error("Recruiter and Jobseeker haven't worked together, save impossible.");
@@ -51,11 +48,10 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public ResponseEntity<String> deleteById(GradeId idGrade) {
-        try{
+        try {
             gradeRepository.deleteById(idGrade);
             return ResponseEntity.ok("Delete grade completed.");
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
