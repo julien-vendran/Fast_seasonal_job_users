@@ -11,6 +11,5 @@ public interface RecruiterService {
     Iterable<RecruiterEntity> findAll();
     Optional<RecruiterEntity> findById(long id);
     Iterable<RecruiterEntity> findByCompanyName(String companyName);
-    /*Optional<RecruiterEntity> findByEmail(String email);*/
     ResponseEntity<String> deleteById(long id);
 }
